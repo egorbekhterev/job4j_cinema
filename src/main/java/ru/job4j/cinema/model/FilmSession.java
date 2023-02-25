@@ -1,15 +1,28 @@
 package ru.job4j.cinema.model;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Objects;
 
 /**
- * Доменная модель данных, описывающая сеансы.
+ * Доменная модель данных, описывающая киносеансы.
  * @author: Egor Bekhterev
  * @date: 22.02.2023
  * @project: job4j_cinema
  */
 public class FilmSession {
+
+    /**
+     * Mapping для согласования модели с БД.
+     */
+    public static final Map<String, String> COLUMN_MAPPING = Map.of(
+            "id", "id",
+            "film_id", "filmId",
+            "hall_id", "hallId",
+            "start_time", "startTime",
+            "end_time", "endTime",
+            "price", "price"
+    );
 
     private int id;
     private int filmId;
@@ -18,7 +31,8 @@ public class FilmSession {
     private LocalDateTime endTime;
     private int price;
 
-    public FilmSession(int filmId, int hallId, LocalDateTime startTime, LocalDateTime endTime, int price) {
+    public FilmSession(int id, int filmId, int hallId, LocalDateTime startTime, LocalDateTime endTime, int price) {
+        this.id = id;
         this.filmId = filmId;
         this.hallId = hallId;
         this.startTime = startTime;
@@ -26,6 +40,10 @@ public class FilmSession {
         this.price = price;
     }
 
+    /**
+     * Добавляем конструктор по умолчанию, т.к. при маппинге сначала создается пустой объект,
+     * а потом вызываются set методы.
+     */
     public FilmSession() {
     }
 

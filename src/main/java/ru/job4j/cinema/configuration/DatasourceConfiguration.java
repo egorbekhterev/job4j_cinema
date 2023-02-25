@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 /**
+ * Класс-конфигуратор для работы с БД.
  * @author: Egor Bekhterev
  * @date: 22.02.2023
  * @project: job4j_cinema
@@ -22,6 +23,13 @@ import java.time.LocalDateTime;
 @Configuration
 public class DatasourceConfiguration {
 
+    /**
+     * Создает пул-соединений.
+     * @param url URL для подключения к БД.
+     * @param username имя пользователя PSQL.
+     * @param password пароль.
+     * @return Реализация пула - {@link BasicDataSource}.
+     */
     @Bean
     public DataSource connectionPool(@Value("${datasource.url}") String url,
                                      @Value("${datasource.username}") String username,
@@ -35,11 +43,20 @@ public class DatasourceConfiguration {
         };
     }
 
+    /**
+     * Создает экземпляр ORM.
+     * @param dataSource пул соединений {@link BasicDataSource}.
+     * @return экземпляр {@link Sql2o}
+     */
     @Bean
     public Sql2o databaseClient(DataSource dataSource) {
         return new Sql2o(dataSource, createConverters());
     }
 
+    /**
+     * Конвертер выполняет преобразование из {@link Timestamp} в {@link LocalDateTime} и наоборот.
+     * @return объект {@link Quirks} для инициализации {@link Sql2o}.
+     */
     private Quirks createConverters() {
         return new NoQuirks() {
             {

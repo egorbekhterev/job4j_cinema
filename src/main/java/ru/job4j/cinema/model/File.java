@@ -12,6 +12,10 @@ public class File {
 
     private int id;
     private String name;
+
+    /**
+     * Относительный путь к файлу.
+     */
     private String path;
 
     public File(String name, String path) {

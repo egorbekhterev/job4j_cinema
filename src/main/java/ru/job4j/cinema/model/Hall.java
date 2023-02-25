@@ -1,5 +1,6 @@
 package ru.job4j.cinema.model;
 
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -9,6 +10,17 @@ import java.util.Objects;
  * @project: job4j_cinema
  */
 public class Hall {
+
+    /**
+     * Mapping для согласования модели с БД.
+     */
+    public static final Map<String, String> COLUMN_MAPPING = Map.of(
+            "id", "id",
+            "name", "name",
+            "row_count", "rowCount",
+            "place_count", "placeCount",
+            "description", "description"
+    );
 
     private int id;
     private String name;
@@ -23,6 +35,10 @@ public class Hall {
         this.description = description;
     }
 
+    /**
+     * Добавляем конструктор по умолчанию, т.к. при маппинге сначала создается пустой объект,
+     * а потом вызываются set методы.
+     */
     public Hall() {
     }
 

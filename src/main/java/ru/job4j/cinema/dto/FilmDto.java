@@ -1,7 +1,9 @@
 package ru.job4j.cinema.dto;
 
+import ru.job4j.cinema.model.Film;
+
 /**
- * Класс реализует DTO объект для фильмов.
+ * Класс реализует DTO объект для фильмов {@link Film}.
  * @author: Egor Bekhterev
  * @date: 22.02.2023
  * @project: job4j_cinema
@@ -15,6 +17,10 @@ public class FilmDto {
     private int minimalAge;
     private int durationInMinutes;
     private int fileId;
+
+    /**
+     * Поле содержит название жанра для использования в представлении.
+     */
     private String genre;
 
     public FilmDto(String name, String description, int year, int minimalAge, int durationInMinutes, int fileId, String genre) {

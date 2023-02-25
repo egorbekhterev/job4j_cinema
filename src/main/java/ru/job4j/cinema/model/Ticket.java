@@ -1,5 +1,6 @@
 package ru.job4j.cinema.model;
 
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -16,11 +17,30 @@ public class Ticket {
     private int placeNumber;
     private int userId;
 
-    public Ticket(int sessionId, int rowNumber, int placeNumber, int userId) {
+    /**
+     * Mapping для согласования модели с БД.
+     */
+    public static final Map<String, String> COLUMN_MAPPING = Map.of(
+            "id", "id",
+            "session_id", "sessionId",
+            "row_number", "rowNumber",
+            "place_number", "placeNumber",
+            "user_id", "userId"
+    );
+
+    public Ticket(int id, int sessionId, int rowNumber, int placeNumber, int userId) {
+        this.id = id;
         this.sessionId = sessionId;
         this.rowNumber = rowNumber;
         this.placeNumber = placeNumber;
         this.userId = userId;
+    }
+
+    /**
+     * Добавляем конструктор по умолчанию, т.к. при маппинге сначала создается пустой объект,
+     * а потом вызываются set методы.
+     */
+    public Ticket() {
     }
 
     public int getId() {

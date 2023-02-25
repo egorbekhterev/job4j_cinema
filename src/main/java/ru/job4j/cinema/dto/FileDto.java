@@ -1,7 +1,9 @@
 package ru.job4j.cinema.dto;
 
+import ru.job4j.cinema.model.File;
+
 /**
- * Класс реализует DTO объект для файлов.
+ * Класс реализует DTO объект для файлов {@link File}.
  * @author: Egor Bekhterev
  * @date: 22.02.2023
  * @project: job4j_cinema

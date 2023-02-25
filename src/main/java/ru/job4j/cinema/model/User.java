@@ -1,5 +1,6 @@
 package ru.job4j.cinema.model;
 
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -10,15 +11,36 @@ import java.util.Objects;
  */
 public class User {
 
+    /**
+     * Mapping для согласования модели с БД.
+     */
+    public static final Map<String, String> COLUMN_MAPPING = Map.of(
+            "id", "id",
+            "full_name", "fullName",
+            "email", "email",
+            "password", "password"
+    );
+
     private int id;
+    /**
+     * Полное имя пользователя.
+     */
     private String fullName;
     private String email;
     private String password;
 
-    public User(String fullName, String email, String password) {
+    public User(int id, String fullName, String email, String password) {
+        this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.password = password;
+    }
+
+    /**
+     * Добавляем конструктор по умолчанию, т.к. при маппинге сначала создается пустой объект,
+     * а потом вызываются set методы.
+     */
+    public User() {
     }
 
     public int getId() {
