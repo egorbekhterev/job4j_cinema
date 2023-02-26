@@ -5,6 +5,7 @@ import ru.job4j.cinema.model.Genre;
 import java.util.Optional;
 
 /**
+ * Интерфейс для хранилищ жанров {@link Genre}.
  * @author: Egor Bekhterev
  * @date: 22.02.2023
  * @project: job4j_cinema

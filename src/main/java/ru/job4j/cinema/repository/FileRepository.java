@@ -1,9 +1,10 @@
 package ru.job4j.cinema.repository;
 
-import java.io.File;
+import ru.job4j.cinema.model.File;
 import java.util.Optional;
 
 /**
+ * Интерфейс для хранилищ файлов {@link File}.
  * @author: Egor Bekhterev
  * @date: 22.02.2023
  * @project: job4j_cinema

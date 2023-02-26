@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 /**
+ * Интерфейс для хранилищ фильмов {@link Film}.
  * @author: Egor Bekhterev
  * @date: 22.02.2023
  * @project: job4j_cinema
