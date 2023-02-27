@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
-    <title>Film Library</title>
+    <title>Cinema</title>
 </head>
 <body>
 <div class="container-fluid p-0">
@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse">
                 <div class="navbar-nav me-auto">
                     <a class="nav-item nav-link" href="/">Home Page</a>
-                    <a class="nav-item nav-link active" th:href="@{/library}">Film Library</a>
+                    <a class="nav-item nav-link" th:href="@{/library}">Film Library</a>
                     <a class="nav-item nav-link" th:href="@{/showtime}">Showtimes</a>
                 </div>
                 <div class="d-flex" th:if="${user.fullName == 'Guest'}">
@@ -34,33 +34,22 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="row">
-            <table class="table table-bordered">
-                <thead>
-                <tr align="center" valign="middle">
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Genre</th>
-                    <th>Release Year</th>
-                    <th>Duration In Minutes</th>
-                    <th>Age Rating</th>
-                    <th>Poster</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr align="center" th:each="film: ${films}">
-                    <td th:text="${film.name}" />
-                    <td align="justify" th:text="${film.description}"/>
-                    <td th:text="${film.genre}"/>
-                    <td th:text="${film.year}"/>
-                    <td th:text="${film.durationInMinutes}"/>
-                    <td th:text="${film.minimalAge} + '+'"/>
-                    <td><img th:src="@{/files/{fileId}(fileId=*{film.fileId})}" class="w-100" alt="No image"></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="container mt-2">
+        <style>
+            p {
+                text-align:center;
+                font-size: 210%;
+                color: black;
+                text-indent: 30px;
+                text-transform: uppercase;
+                }
+            i {
+                font-size: 100%;
+                color: navy;
+            }
+        </style>
+        <p>You have successfully purchased a ticket.</p>
+        <p>Row: <i th:text="${ticket.rowNumber}"></i>. Seat: <i th:text="${ticket.placeNumber}"></i>.</p>
     </div>
 </div>
 </body>

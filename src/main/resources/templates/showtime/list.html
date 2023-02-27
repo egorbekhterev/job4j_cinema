@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
-    <title>Film Library</title>
+    <title>Showtimes</title>
 </head>
 <body>
 <div class="container-fluid p-0">
@@ -20,8 +20,8 @@
             <div class="collapse navbar-collapse">
                 <div class="navbar-nav me-auto">
                     <a class="nav-item nav-link" href="/">Home Page</a>
-                    <a class="nav-item nav-link active" th:href="@{/library}">Film Library</a>
-                    <a class="nav-item nav-link" th:href="@{/showtime}">Showtimes</a>
+                    <a class="nav-item nav-link" th:href="@{/library}">Film Library</a>
+                    <a class="nav-item nav-link active" th:href="@{/showtime}">Showtimes</a>
                 </div>
                 <div class="d-flex" th:if="${user.fullName == 'Guest'}">
                     <a class="nav-link text-secondary me-3" th:href="@{/users/register}">Sign In</a>
@@ -36,27 +36,25 @@
     </nav>
     <div class="container">
         <div class="row">
-            <table class="table table-bordered">
+            <table class="table table-hover">
                 <thead>
-                <tr align="center" valign="middle">
+                <tr>
                     <th>Title</th>
-                    <th>Description</th>
-                    <th>Genre</th>
-                    <th>Release Year</th>
-                    <th>Duration In Minutes</th>
-                    <th>Age Rating</th>
-                    <th>Poster</th>
+                    <th>Hall</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Price, RUB.</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr align="center" th:each="film: ${films}">
-                    <td th:text="${film.name}" />
-                    <td align="justify" th:text="${film.description}"/>
-                    <td th:text="${film.genre}"/>
-                    <td th:text="${film.year}"/>
-                    <td th:text="${film.durationInMinutes}"/>
-                    <td th:text="${film.minimalAge} + '+'"/>
-                    <td><img th:src="@{/files/{fileId}(fileId=*{film.fileId})}" class="w-100" alt="No image"></td>
+                <tr th:each="show: ${shows}">
+                    <td th:text="${show.filmName}"/>
+                    <td th:text="${show.hallName}"/>
+                    <td th:text="${{show.startTime}}"/>
+                    <td th:text="${{show.endTime}}"/>
+                    <td th:text="${show.price}"/>
+                    <td><a th:href="@{/cashdesk/{showId}(showId=${show.id})}">Buy a ticket</a></td>
                 </tr>
                 </tbody>
             </table>
