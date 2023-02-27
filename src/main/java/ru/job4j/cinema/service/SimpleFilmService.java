@@ -1,5 +1,6 @@
 package ru.job4j.cinema.service;
 
+import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FilmDto;
 import ru.job4j.cinema.model.Film;
@@ -11,16 +12,24 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Сервис собирает данные для представления FilmLibrary.
+ * Реализация сервиса для фильмов {@link FilmDto}.
+ * Сервис собирает данные для представления library/list.html.
  * @author: Egor Bekhterev
  * @date: 22.02.2023
  * @project: job4j_cinema
  */
+@ThreadSafe
 @Service
 public class SimpleFilmService implements FilmService {
 
+    /**
+     * Поле для обращения к хранилищу фильмов.
+     */
     private final FilmRepository filmRepository;
 
+    /**
+     * Поле для обращения к хранилищу жанров.
+     */
     private final GenreRepository genreRepository;
 
     public SimpleFilmService(FilmRepository sql2oFilmRepository, GenreRepository sql2oGenreRepository) {
@@ -52,6 +61,11 @@ public class SimpleFilmService implements FilmService {
                 film.getDurationInMinutes(), film.getFileId(), getGenre(film));
     }
 
+    /**
+     * Возвращает контейнер DTO-файла {@link FilmDto}, найденного в таблице films по первому совпадению с ID.
+     * @param id ID искомого фильма.
+     * @return контейнер фильма {@link FilmDto}
+     */
     @Override
     public Optional<FilmDto> findById(int id) {
         var filmOptional = filmRepository.findById(id);
@@ -61,9 +75,13 @@ public class SimpleFilmService implements FilmService {
         return Optional.of(transformFilmToFilmDto(filmOptional.get()));
     }
 
+    /**
+     * Преобразует ResultSet из таблицы films в коллекцию.
+     * @return коллекция DTO-фильмов {@link FilmDto}.
+     */
     @Override
-    public Collection<FilmDto> getAll() {
-        return filmRepository.getAll().stream()
+    public Collection<FilmDto> findAll() {
+        return filmRepository.findAll().stream()
                 .map(this::transformFilmToFilmDto).collect(Collectors.toList());
     }
 }

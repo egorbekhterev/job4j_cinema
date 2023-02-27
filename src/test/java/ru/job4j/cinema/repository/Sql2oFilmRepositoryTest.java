@@ -61,7 +61,7 @@ public class Sql2oFilmRepositoryTest {
      */
     @Test
     public void whenFindAll() {
-        var actual = sql2oFilmRepository.getAll();
+        var actual = sql2oFilmRepository.findAll();
         assertThat(actual).isEqualTo(List.of(sql2oFilmRepository.findById(1).get(),
                 sql2oFilmRepository.findById(2).get(), sql2oFilmRepository.findById(3).get(),
                 sql2oFilmRepository.findById(4).get(), sql2oFilmRepository.findById(5).get()));

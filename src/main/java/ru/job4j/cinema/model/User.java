@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * Доменная одель данных, описывающая пользователей сайта.
+ * Доменная модель данных, описывающая пользователей сайта.
  * @author: Egor Bekhterev
  * @date: 22.02.2023
  * @project: job4j_cinema
