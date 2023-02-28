@@ -15,5 +15,5 @@ public interface FilmSessionRepository {
 
     Optional<FilmSession> findById(int id);
 
-    Collection<FilmSession> getAll();
+    Collection<FilmSession> findAll();
 }

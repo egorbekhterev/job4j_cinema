@@ -61,7 +61,7 @@ public class Sql2oFilmSessionRepositoryTest {
      */
     @Test
     public void whenFindAll() {
-        var actual = sql2oFilmSessionRepository.getAll();
+        var actual = sql2oFilmSessionRepository.findAll();
         var expected = new ArrayList<>();
         for (int i = 1; i <= actual.size(); i++) {
             expected.add(sql2oFilmSessionRepository.findById(i).get());

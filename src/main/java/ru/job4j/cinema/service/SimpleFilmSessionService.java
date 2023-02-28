@@ -113,7 +113,7 @@ public class SimpleFilmSessionService implements FilmSessionService {
      */
     @Override
     public Collection<FilmSessionDto> findAll() {
-        return filmSessionRepository.getAll().stream()
+        return filmSessionRepository.findAll().stream()
                 .map(this::transformFilmSessionToFilmSessionDto).collect(Collectors.toList());
     }
 }

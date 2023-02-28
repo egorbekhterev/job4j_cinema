@@ -49,7 +49,7 @@ public class Sql2oFilmSessionRepository implements FilmSessionRepository {
      * @return коллекция киносеансов {@link FilmSession}.
      */
     @Override
-    public Collection<FilmSession> getAll() {
+    public Collection<FilmSession> findAll() {
         try (var connection = sql2o.open()) {
             var query = connection.createQuery("SELECT * FROM film_sessions");
             return query.setColumnMappings(FilmSession.COLUMN_MAPPING).executeAndFetch(FilmSession.class);

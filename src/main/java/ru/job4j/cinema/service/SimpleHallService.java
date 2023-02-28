@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 /**
  * Реализация сервиса для кинозалов {@link HallDto}.
@@ -38,11 +39,7 @@ public class SimpleHallService implements HallService {
      * @return коллекция Integer-объектов.
      */
     private Collection<Integer> getRowCountCollection(Hall hall) {
-        List<Integer> list = new ArrayList<>();
-        for (int i = 1; i <= hall.getRowCount(); i++) {
-            list.add(i);
-        }
-        return list;
+        return IntStream.rangeClosed(1, hall.getRowCount()).boxed().toList();
     }
 
     /**
@@ -52,11 +49,7 @@ public class SimpleHallService implements HallService {
      * @return коллекция Integer-объектов.
      */
     private Collection<Integer> getPlaceCountCollection(Hall hall) {
-        List<Integer> list = new ArrayList<>();
-        for (int i = 1; i <= hall.getPlaceCount(); i++) {
-            list.add(i);
-        }
-        return list;
+        return IntStream.rangeClosed(1, hall.getPlaceCount()).boxed().toList();
     }
 
     /**
