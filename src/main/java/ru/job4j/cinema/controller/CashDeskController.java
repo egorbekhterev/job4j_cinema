@@ -9,8 +9,6 @@ import ru.job4j.cinema.service.FilmSessionService;
 import ru.job4j.cinema.service.HallService;
 import ru.job4j.cinema.service.TicketService;
 import ru.job4j.cinema.model.FilmSession;
-import ru.job4j.cinema.dto.HallDto;
-import ru.job4j.cinema.dto.FilmSessionDto;
 
 /**
  * Контроллер для онлайн-кассы.
@@ -37,8 +35,8 @@ public class CashDeskController {
 
     /**
      * GET-метод для отображения страницы покупки билетов. Создает страницу для киносеанса с соответствующим ID.
-     * @param model - модель для сборки представления. С ее помощью извлекаются данные из сущностей {@link FilmSession},
-     *              {@link HallDto, {@link FilmSessionDto}.
+     * @param model - модель для сборки представления. С ее помощью извлекаются данные из сущностей FilmSession,
+     *              HallDto, FilmSessionDto.
      * @param id - ID киносеанса {@link FilmSession}
      * @return путь к представлению.
      */
@@ -52,18 +50,10 @@ public class CashDeskController {
 
         var hallId = filmSessionOptional.get().getHallId();
         var hallOptional = hallService.findById(hallId);
-        if (hallOptional.isEmpty()) {
-            model.addAttribute("message", "No hall with the given ID was found.");
-            return "errors/404";
-        }
         model.addAttribute("rows", hallOptional.get().getRowCountCollection());
         model.addAttribute("places", hallOptional.get().getPlaceCountCollection());
 
         var filmSessionDtoOptional = filmSessionService.findByIdDto(id);
-        if (filmSessionDtoOptional.isEmpty()) {
-            model.addAttribute("message", "No film session with the given ID was found.");
-            return "errors/404";
-        }
         model.addAttribute("filmSession", filmSessionDtoOptional.get());
 
         return "cashdesk/buy";
