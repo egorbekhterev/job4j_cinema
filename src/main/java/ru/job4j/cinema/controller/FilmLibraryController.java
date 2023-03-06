@@ -9,7 +9,7 @@ import ru.job4j.cinema.service.FilmService;
 import ru.job4j.cinema.dto.FilmDto;
 
 /**
- * Контроллера для кинотеки.
+ * Контроллер для кинотеки.
  * @author: Egor Bekhterev
  * @date: 22.02.2023
  * @project: job4j_cinema
